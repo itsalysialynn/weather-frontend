@@ -4,6 +4,7 @@ import colors from "./colors";
 const GlobalStyle = createGlobalStyle`
   body {
     background: ${colors.ocean};
+    color: ${colors.white}
     font-family: 'PT Sans', sans-serif;
     overflow: hidden;
   }

@@ -3,22 +3,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import convertKalvinToCelsius from "../helpers/convertKalvinToCelsius";
 import styled from "styled-components";
-import { colors } from "../theme";
 import { toast } from "react-toastify";
+import CityWeather from "./CityWeather";
 
 const PageWrapper = styled.div`
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  left: 50%;
-  position: fixed;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  padding: 32px;
 `;
 
 const Title = styled.h1`
-  color ${colors.white};
   font-family: "Playfair Display", serif;
   font-weight: bold;
   text-align: center;
@@ -50,7 +42,7 @@ const HomePage = () => {
   const onSubmit = (formData) => {
     setLoading(true);
     axios
-      .get("/v1/weather.json", { params: { city } })
+      .get("/v1/weather.json", { params: { city: formData.city } })
       .then((response) => setTemperatureData(response?.data))
       .catch((error) => showToastError(error))
       .then(() => setLoading(false));
@@ -59,9 +51,11 @@ const HomePage = () => {
   return (
     <PageWrapper>
       <Title>Weather App</Title>
-      {description && <div>{description}</div>}
-      {temperature && <div>{`${temperature}°C`}</div>}
-      {city && <div>{city}</div>}
+      <CityWeather
+        city={city}
+        description={description}
+        temperature={temperature}
+      />
       {loading ? <div>Loading</div> : <CitySearch onSubmit={onSubmit} />}
     </PageWrapper>
   );
