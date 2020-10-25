@@ -5,6 +5,7 @@ import convertKalvinToCelsius from "../helpers/convertKalvinToCelsius";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import CityWeather from "./CityWeather";
+import LoadingSpinner from "./LoadingSpinner";
 
 const PageWrapper = styled.div`
   padding: 32px;
@@ -56,7 +57,7 @@ const HomePage = () => {
         description={description}
         temperature={temperature}
       />
-      {loading ? <div>Loading</div> : <CitySearch onSubmit={onSubmit} />}
+      {loading ? <LoadingSpinner /> : <CitySearch onSubmit={onSubmit} />}
     </PageWrapper>
   );
 };
