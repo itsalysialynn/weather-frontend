@@ -51,7 +51,7 @@ const HomePage = () => {
     <PageWrapper>
       <Title>Weather App</Title>
       {loading ? (
-        <div data-test-id="loading-spinner">Loading</div>
+        <div>Loading</div>
       ) : (
         <CitySearch onSubmit={onSubmit} />
       )}

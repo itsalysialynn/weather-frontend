@@ -1,7 +1,7 @@
+import CitySearch from "./CitySearch";
 import HomePage from "./HomePage";
 import React from "react";
 import { shallow } from "enzyme";
-import CitySearch from "./CitySearch";
 
 describe("HomePage", () => {
   let test;
