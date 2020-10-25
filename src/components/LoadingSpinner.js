@@ -1,5 +1,5 @@
-import React from "react";
 import ClipLoader from "react-spinners/ClipLoader";
+import React from "react";
 import styled from "styled-components";
 import { colors } from "../theme";
 
