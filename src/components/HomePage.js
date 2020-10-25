@@ -26,8 +26,8 @@ const Title = styled.h1`
 
 const HomePage = () => {
   const [loading, setLoading] = useState(false);
-  const [temperature, setTemperature] = useState(null);
-  const [description, setDescription] = useState(null);
+  const [temperature, setTemperature] = useState("");
+  const [description, setDescription] = useState("");
 
   const showToastError = (error) => {
     if (error.response?.status === 404) {
