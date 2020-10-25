@@ -1,6 +1,7 @@
 import CitySearch from "./CitySearch";
 import React, { useState } from "react";
 import axios from "axios";
+import convertKalvinToCelsius from "../helpers/convertKalvinToCelsius";
 import styled from "styled-components";
 import { colors } from "../theme";
 import { toast } from "react-toastify";
@@ -25,36 +26,43 @@ const Title = styled.h1`
 
 const HomePage = () => {
   const [loading, setLoading] = useState(false);
-  const [weatherData, setWeatherData] = useState({});
+  const [temperature, setTemperature] = useState("");
+  const [description, setDescription] = useState("");
+  const [city, setCity] = useState("");
 
-  const onSubmit = (data) => {
+  const setTemperatureData = (data) => {
+    const celsiusTemp = convertKalvinToCelsius(data?.main?.temp);
+    setTemperature(celsiusTemp);
+    setDescription(data?.weather[0]?.main);
+    setCity(data?.name);
+  };
+
+  const showToastError = (error) => {
+    if (error.response?.status === 404) {
+      toast.error(
+        "Oops! We cannot find the weather for the city you entered. Please check your spelling and try again."
+      );
+    } else {
+      toast.error("We are so sorry! An error occurred, please try again.");
+    }
+  };
+
+  const onSubmit = (formData) => {
     setLoading(true);
     axios
-      .get("/v1/weather.json", { params: { city: data.city } })
-      .then((response) => {
-        setWeatherData(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setLoading(false);
-        if (error.response.status === 404) {
-          toast.error(
-            "Oops! We cannot find the weather for the city you entered. Please check your spelling and try again."
-          );
-        } else {
-          toast.error("We're so sorry! An error occurred, please try again.");
-        }
-      });
+      .get("/v1/weather.json", { params: { city } })
+      .then((response) => setTemperatureData(response?.data))
+      .catch((error) => showToastError(error))
+      .then(() => setLoading(false));
   };
 
   return (
     <PageWrapper>
       <Title>Weather App</Title>
-      {loading ? (
-        <div>Loading</div>
-      ) : (
-        <CitySearch onSubmit={onSubmit} />
-      )}
+      {description && <div>{description}</div>}
+      {temperature && <div>{`${temperature}°C`}</div>}
+      {city && <div>{city}</div>}
+      {loading ? <div>Loading</div> : <CitySearch onSubmit={onSubmit} />}
     </PageWrapper>
   );
 };

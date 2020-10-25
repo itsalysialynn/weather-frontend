@@ -36,7 +36,7 @@ describe("CitySearch", () => {
     test.createWrapper();
 
     test.wrapper.find("form").simulate("submit");
-    expect(test.props.onSubmit).toHaveBeenCalledWith({ city: "Vancouver" });
+    expect(test.props.onSubmit).toHaveBeenCalledWith(test.formData);
   });
 
   it("should show an error message if city required validation fails", () => {
