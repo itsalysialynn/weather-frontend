@@ -28,6 +28,14 @@ const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const [temperature, setTemperature] = useState("");
   const [description, setDescription] = useState("");
+  const [city, setCity] = useState("");
+
+  const setTemperatureData = (data) => {
+    const celsiusTemp = convertKalvinToCelsius(data?.main?.temp);
+    setTemperature(celsiusTemp);
+    setDescription(data?.weather[0]?.main);
+    setCity(data?.name);
+  };
 
   const showToastError = (error) => {
     if (error.response?.status === 404) {
@@ -39,31 +47,25 @@ const HomePage = () => {
     }
   };
 
-  const setTemperatureData = (data) => {
-    const celsiusTemp = convertKalvinToCelsius(data?.main?.temp);
-    setTemperature(celsiusTemp);
-    setDescription(data?.weather[0]?.main);
+  const fetchWeatherForCity = (city) => {
+    axios
+      .get("/v1/weather.json", { params: { city } })
+      .then((response) => setTemperatureData(response?.data))
+      .then(() => setLoading(false))
+      .catch((error) => showToastError(error));
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (formData) => {
     setLoading(true);
-    axios
-      .get("/v1/weather.json", { params: { city: data.city } })
-      .then((response) => {
-        setTemperatureData(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        showToastError(error);
-        setLoading(false);
-      });
+    fetchWeatherForCity(formData?.city);
   };
 
   return (
     <PageWrapper>
-      <div>{description}</div>
-      {temperature && <div>{`${temperature}°C`}</div>}
       <Title>Weather App</Title>
+      {description && <div>{description}</div>}
+      {temperature && <div>{`${temperature}°C`}</div>}
+      {city && <div>{city}</div>}
       {loading ? <div>Loading</div> : <CitySearch onSubmit={onSubmit} />}
     </PageWrapper>
   );
