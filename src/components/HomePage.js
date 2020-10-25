@@ -43,21 +43,17 @@ const HomePage = () => {
         "Oops! We cannot find the weather for the city you entered. Please check your spelling and try again."
       );
     } else {
-      toast.error("We're so sorry! An error occurred, please try again.");
+      toast.error("We are so sorry! An error occurred, please try again.");
     }
-  };
-
-  const fetchWeatherForCity = (city) => {
-    axios
-      .get("/v1/weather.json", { params: { city } })
-      .then((response) => setTemperatureData(response?.data))
-      .then(() => setLoading(false))
-      .catch((error) => showToastError(error));
   };
 
   const onSubmit = (formData) => {
     setLoading(true);
-    fetchWeatherForCity(formData?.city);
+    axios
+      .get("/v1/weather.json", { params: { city } })
+      .then((response) => setTemperatureData(response?.data))
+      .catch((error) => showToastError(error))
+      .then(() => setLoading(false));
   };
 
   return (
