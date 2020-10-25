@@ -1,9 +1,15 @@
 import React from "react";
 import Enzyme from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import CitySearch from "./CitySearch";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const App = () => <h1>Weather App</h1>;
+const App = () => (
+  <div>
+    <h1>WeatherApp</h1>
+    <CitySearch />
+  </div>
+);
 
 export default App;
