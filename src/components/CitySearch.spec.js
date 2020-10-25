@@ -32,7 +32,7 @@ describe("CitySearch", () => {
     };
   });
 
-  it("should call onSubmit when submit button is clicked", () => {
+  it("should call onSubmit prop when submit button is clicked", () => {
     test.createWrapper();
 
     test.wrapper.find("form").simulate("submit");
