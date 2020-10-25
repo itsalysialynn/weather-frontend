@@ -2,10 +2,12 @@
   "name": "weather-frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:4000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hook-form": "^6.9.6",
@@ -37,8 +39,8 @@
     ]
   },
   "devDependencies": {
-    "enzyme": "^3.11.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.1.1",
+    "enzyme": "^3.11.0",
     "flow-bin": "^0.136.0",
     "prettier": "2.1.2"
   }

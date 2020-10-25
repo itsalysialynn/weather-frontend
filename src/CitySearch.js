@@ -1,9 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const CitySearch = () => {
+const CitySearch = ({ onSubmit }) => {
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
