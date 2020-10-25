@@ -33,7 +33,7 @@ const HomePage = () => {
   const showToastError = (error) => {
     if (error.response?.status === 404) {
       toast.error(
-        "Oops! We cannot find the weather for the city you entered. Please check your spelling and try again."
+        "Oops! We cannot find the weather for the city you entered, please try again."
       );
     } else {
       toast.error("We are so sorry! An error occurred, please try again.");
