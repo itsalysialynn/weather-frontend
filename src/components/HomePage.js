@@ -2,6 +2,23 @@ import React from "react";
 import CitySearch from "./CitySearch";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import styled from "styled-components";
+
+const PageWrapper = styled.div`
+  left: 50%;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+`;
+
+const Title = styled.h1`
+  font-weight: bold;
+  text-align: center;
+`;
 
 const onSubmit = (data) => {
   axios
@@ -21,8 +38,8 @@ const onSubmit = (data) => {
 };
 
 const App = () => (
-  <div>
-    <h1>WeatherApp</h1>
+  <PageWrapper>
+    <Title>WeatherApp</Title>
     <CitySearch onSubmit={onSubmit} />
     <ToastContainer
       position="bottom-right"
@@ -32,7 +49,7 @@ const App = () => (
       draggable
       pauseOnHover
     />
-  </div>
+  </PageWrapper>
 );
 
 export default App;
