@@ -32,7 +32,6 @@ const HomePage = () => {
     axios
       .get("/v1/weather.json", { params: { city: data.city } })
       .then((response) => {
-        debugger;
         setWeatherData(response.data);
         setLoading(false);
       })
