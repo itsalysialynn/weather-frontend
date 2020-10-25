@@ -16,7 +16,7 @@ const CitySearch = ({ onSubmit }) => {
       <input type="text" name="city" ref={register({ required: true })} />
       {errors.city && errors.city.type === "required" && (
         <ValidationError data-test-id="city-error">
-          This is required
+          You must enter a city to see the current weather!
         </ValidationError>
       )}
       <input type="submit" />
