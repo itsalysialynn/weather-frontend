@@ -9,9 +9,9 @@ const Wrapper = styled.div`
 
 const CityWeather = ({ temperature, description, city }) => (
   <Wrapper>
-    {description && <div>{description}</div>}
+    {description && <div data-test-id="description">{description}</div>}
     {temperature && <h1>{`${temperature}°C`}</h1>}
-    {city && <div>{city}</div>}
+    {city && <div data-test-id="city">{city}</div>}
   </Wrapper>
 );
 
