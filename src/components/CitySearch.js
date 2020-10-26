@@ -1,7 +1,7 @@
 import React from "react";
-import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { colors } from "../theme";
+import { useForm } from "react-hook-form";
 
 const FormWrapper = styled.div`
   display: flex;

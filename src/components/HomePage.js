@@ -1,11 +1,11 @@
 import CitySearch from "./CitySearch";
+import CityWeather from "./CityWeather";
+import LoadingSpinner from "./LoadingSpinner";
 import React, { useState } from "react";
 import axios from "axios";
 import convertKalvinToCelsius from "../helpers/convertKalvinToCelsius";
 import styled from "styled-components";
 import { toast } from "react-toastify";
-import CityWeather from "./CityWeather";
-import LoadingSpinner from "./LoadingSpinner";
 
 const PageWrapper = styled.div`
   padding: 32px;
